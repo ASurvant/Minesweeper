@@ -3,7 +3,7 @@ require './tile'
 class Board
 
   attr_reader :grid
-  
+
   def initialize
     @grid = Array.new(9) { Array.new(9) }
     populate
@@ -27,13 +27,23 @@ class Board
   end
 
   def []=(pos, state)
-    row, col = pos[0], pos[1]
+    row, col = pos
     @grid[row][col] = state
   end
 
   def [](pos)
-    row, col = pos[0], pos[1]
+    row, col = pos
     @grid[row][col]
+  end
+
+  def on_board?(pos)
+    row, col = pos
+    if row < 0 || col < 0
+      return false
+    elsif row >= @grid.size || col >= @grid.first.size
+      return false
+    end
+    true
   end
 
   def generate_bombs

@@ -21,13 +21,16 @@ class Tile
   end
 
   def neighbors
+    return @neighbors if @neighbors
+
     @neighbors = []
     NEIGHBOR.each do |delta|
-      pos_dup = @pos.dup
-      x = pos_dup[0] + delta[0]
-      y = pos_dup[1] + delta[1]
-      @neighbors << [x, y] if @board.grid.include? ([x, y])
+      x = @pos[0] + delta[0]
+      y = @pos[1] + delta[1]
+      pos = [x, y]
+      @neighbors << pos if @board.on_board?(pos)
     end
+
     @neighbors
   end
 
