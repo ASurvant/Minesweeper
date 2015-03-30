@@ -30,7 +30,7 @@ class Board
 
   def reveal(pos, command)
     if command.downcase == 'r'
-      self[pos].revealed = true
+      self[pos].revealy
     elsif command.downcase == 'f'
       self[pos].flag!
     end
@@ -39,9 +39,11 @@ class Board
   def won?
     false
   end
+
   def lose?
     false
   end
+
   def []=(pos, state)
     row, col = pos
     @grid[row][col] = state

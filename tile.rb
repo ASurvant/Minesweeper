@@ -50,7 +50,7 @@ class Tile
 
   def display
     if @is_bomb
-      "$"
+      "☀"
     elsif @is_flagged
       "F"
     elsif !@revealed
@@ -69,9 +69,14 @@ class Tile
     @is_bomb = true
   end
 
-  def state
-    if @revealed
-      return @contents
+  def revealy
+    @revealed = true
+    if self.adjacent_bombs == 0
+      n = neighbors
+      n.each do |pos|
+        @board[pos].revealy if !@board[pos].revealed  
+      end
     end
+    nil
   end
 end
