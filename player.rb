@@ -1,6 +1,9 @@
+require './board'
+
 class Player
   def initialize
     @board = Board.new
+    play
   end
 
   def choose_tile
@@ -10,5 +13,9 @@ class Player
     command = input.last
 
     [position, command]
+  end
+
+  def play
+    
   end
 end

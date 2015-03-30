@@ -10,7 +10,7 @@ class Tile
     [ 1, -1]
   ]
 
-  attr_reader :neighbors
+  attr_reader :neighbors, :is_bomb
 
   def initialize(is_bomb, pos, board)
     @is_bomb = is_bomb
@@ -35,13 +35,29 @@ class Tile
     @neighbors
   end
 
-  def generate_value
+  # return a Fixnum
+  def adjacent_bombs
+    return @bomb_count if @bomb_count
 
+    @bomb_count = 0
+    @neighbors.each do |neighbor|
+      @bomb_count += 1 if @board[neighbor].is_bomb
+    end
+
+    @bomb_count
   end
 
   def display
-    if @is_flagged
-    "*"
+    if @is_bomb
+      "$"
+    elsif @is_flagged
+      "F"
+    elsif !@revealed
+      "*"
+    else
+      return "_" if adjacent_bombs == 0
+      adjacent_bombs.to_s
+    end
   end
 
   def flag!
@@ -50,10 +66,6 @@ class Tile
 
   def bomb!
     @is_bomb = true
-  end
-
-  def reveal
-
   end
 
   def state
