@@ -47,11 +47,12 @@ class Board
   end
 
   def won?
-    false
-  end
-
-  def lose?
-    false
+    @grid.length.times do |i|
+      @grid.first.length.times do |j|
+        return false if !grid[i][j].is_flagged && grid[i][j].is_bomb
+      end
+    end
+    true
   end
 
   def []=(pos, state)

@@ -11,7 +11,7 @@ class Tile
   ]
 
   attr_reader :neighbors, :is_bomb
-  attr_accessor :revealed
+  attr_accessor :revealed, :is_flagged
 
   def initialize(is_bomb, pos, board)
     @is_bomb = is_bomb
@@ -48,9 +48,8 @@ class Tile
     @bomb_count
   end
 
+
   def display
-    # if @is_bomb
-    #   "☀"
     if @is_flagged
       "F"
     elsif !@revealed

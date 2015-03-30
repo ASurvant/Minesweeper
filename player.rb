@@ -17,7 +17,7 @@ class Player
   end
 
   def play
-    until @board.won? || @board.lose?
+    until @board.won?
       turn = choose_tile
       pos = [turn[0][0], turn[0][1]]
       if @board[pos].is_bomb
