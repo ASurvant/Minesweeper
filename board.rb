@@ -28,14 +28,20 @@ class Board
     end
   end
 
-  def reveal(pos)
-
+  def reveal(pos, command)
+    if command.downcase == 'r'
+      self[pos].revealed = true
+    elsif command.downcase == 'f'
+      self[pos].flag!
+    end
   end
 
-  def win?
-
+  def won?
+    false
   end
-
+  def lose?
+    false
+  end
   def []=(pos, state)
     row, col = pos
     @grid[row][col] = state

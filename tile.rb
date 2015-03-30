@@ -11,10 +11,11 @@ class Tile
   ]
 
   attr_reader :neighbors, :is_bomb
+  attr_accessor :revealed
 
   def initialize(is_bomb, pos, board)
     @is_bomb = is_bomb
-    @revealed = false #
+    @revealed = false
     @pos = pos
     @board = board
     #@is_flagged = false
