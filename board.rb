@@ -28,6 +28,16 @@ class Board
     end
   end
 
+  def render_loss
+    @grid.length.times do |i|
+      output = ""
+      @grid.first.length.times do |j|
+        output << " " + "☀"
+      end
+      puts output
+    end
+  end
+
   def reveal(pos, command)
     if command.downcase == 'r'
       self[pos].revealy

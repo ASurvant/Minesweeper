@@ -19,7 +19,13 @@ class Player
   def play
     until @board.won? || @board.lose?
       turn = choose_tile
-      @board.reveal(turn[0], turn[1])
+      pos = [turn[0][0], turn[0][1]]
+      if @board[pos].is_bomb
+        @board.render_loss
+        puts "You lose."
+        break
+      end
+      @board.reveal(pos, turn[1])
       @board.render
     end
   end
