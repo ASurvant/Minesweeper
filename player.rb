@@ -1,4 +1,5 @@
 require './board'
+#require 'yaml'
 
 class Player
   def initialize
@@ -20,13 +21,17 @@ class Player
     until @board.won?
       turn = choose_tile
       pos = [turn[0][0], turn[0][1]]
-      if @board[pos].is_bomb
+
+      if @board[pos].is_bomb && turn[1].downcase == 'r'
         @board.render_loss
-        puts "You lose."
-        break
+        #puts "You lose."
+        raise "You lose"
       end
+
       @board.reveal(pos, turn[1])
       @board.render
     end
+
+    puts "You win!" unless !@board.won?
   end
 end

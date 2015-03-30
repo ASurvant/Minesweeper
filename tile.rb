@@ -18,7 +18,7 @@ class Tile
     @revealed = false
     @pos = pos
     @board = board
-    #@is_flagged = false
+    @is_flagged = false
     neighbors
   end
 
@@ -36,7 +36,6 @@ class Tile
     @neighbors
   end
 
-  # return a Fixnum
   def adjacent_bombs
     return @bomb_count if @bomb_count
 
@@ -48,8 +47,9 @@ class Tile
     @bomb_count
   end
 
-
   def display
+    # if @is_bomb
+    #   "☀"
     if @is_flagged
       "F"
     elsif !@revealed
@@ -61,7 +61,7 @@ class Tile
   end
 
   def flag!
-    @is_flagged = true
+    @is_flagged = !@is_flagged
   end
 
   def bomb!
