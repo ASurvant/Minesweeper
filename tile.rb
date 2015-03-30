@@ -14,9 +14,10 @@ class Tile
 
   def initialize(is_bomb, pos, board)
     @is_bomb = is_bomb
-    @revealed = false # false default
+    @revealed = false #
     @pos = pos
     @board = board
+    #@is_flagged = false
     neighbors
   end
 
@@ -36,6 +37,15 @@ class Tile
 
   def generate_value
 
+  end
+
+  def display
+    if @is_flagged
+    "*"
+  end
+
+  def flag!
+    @is_flagged = true
   end
 
   def bomb!

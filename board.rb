@@ -18,6 +18,16 @@ class Board
     end
   end
 
+  def render
+    @grid.length.times do |i|
+      output = ""
+      @grid.first.length.times do |j|
+        output << " " + grid[i][j].display
+      end
+      puts output
+    end
+  end
+
   def reveal(pos)
 
   end
