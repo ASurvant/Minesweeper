@@ -1,5 +1,4 @@
 require './board'
-#require 'yaml'
 
 class Player
   def initialize
@@ -35,3 +34,5 @@ class Player
     puts "You win!" unless !@board.won?
   end
 end
+
+Player.new
